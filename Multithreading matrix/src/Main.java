@@ -4,6 +4,7 @@ import java.lang.String;
 import java.util.Random;
 import java.lang.Double;
 
+//import satic sun.jvm.hotspot.runtime.PerfMemory.start;
 
 
 public class Main {
@@ -79,7 +80,7 @@ public class Main {
         return random2;
     }
 
-    public void multiply( ArrayList<ArrayList<Integer>> A,  ArrayList<ArrayList<Integer>>B,  ArrayList<ArrayList<Integer>>C, int nr_watk, int m, int p, int n){
+    public static void multiply( ArrayList<ArrayList<Integer>> A,  ArrayList<ArrayList<Integer>>B,  ArrayList<ArrayList<Integer>>C, int nr_watk, int m, int p, int n){
          int il_elementow = (m * p);
          int il_operacji = il_elementow / ilosc_watkow;
          int resz_operacji = il_elementow % ilosc_watkow;
@@ -108,7 +109,8 @@ public class Main {
                 s += e1 * e2;
 
             }
-            C[row][col] = s;*/
+            C.get(row).get(col) = s;
+            */
         }
 
     }
@@ -173,7 +175,14 @@ public class Main {
         System.out.println("Macierz2:");
         printMatrix(random2);
 
+        for (int i = 0; i < ilosc_watkow; i++) {
 
+            //threads.add(new Thread multiply(random1,random2,C,i,m,n,p)).start());
+            //threads.push_back(thread(multiply_t, ref(random1), ref(random2), ref(C), i, m, p, n));
+        }
+        for (int i = 0; i < ilosc_watkow; ++i) {
+            threads.get(i).join();
+        }
 
     }
 }
