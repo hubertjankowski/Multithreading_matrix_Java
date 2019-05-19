@@ -12,6 +12,8 @@ public class Main {
     static ArrayList<Integer> m = new ArrayList();
     static ArrayList<Integer>ran= new ArrayList<Integer>();
     static ArrayList<Integer>ran2 = new ArrayList<Integer>();
+    static ArrayList<Thread>threads = new ArrayList<Thread>();
+
     static ArrayList<ArrayList<Integer>> C = new ArrayList<ArrayList<Integer>>();
     static ArrayList<ArrayList<Integer>> random1 = new ArrayList<ArrayList<Integer>>();
     static ArrayList<ArrayList<Integer>> random2 = new ArrayList<ArrayList<Integer>>();
@@ -77,6 +79,40 @@ public class Main {
         return random2;
     }
 
+    public void multiply( ArrayList<ArrayList<Integer>> A,  ArrayList<ArrayList<Integer>>B,  ArrayList<ArrayList<Integer>>C, int nr_watk, int m, int p, int n){
+         int il_elementow = (m * p);
+         int il_operacji = il_elementow / ilosc_watkow;
+         int resz_operacji = il_elementow % ilosc_watkow;
+
+         int start_op, end_op;
+
+        if (nr_watk == 0) {
+            start_op = il_operacji * nr_watk;
+            end_op = (il_operacji * (nr_watk + 1)) + resz_operacji;
+        }
+        else {
+            start_op = il_operacji * nr_watk + resz_operacji;
+            end_op = (il_operacji * (nr_watk + 1)) + resz_operacji/*+1*/;
+        }
+
+
+        for (int op = start_op; op < end_op; op++) {
+		 int row = op % m;
+		 int col = op / m;
+
+            int s = 0;
+
+           /* for (int i = 0; i < m; i++) {
+			 int e1 = A[row][i];
+			 int e2 = B[i][col];
+                s += e1 * e2;
+
+            }
+            C[row][col] = s;*/
+        }
+
+    }
+
 
 
     public static void main(String[] args) throws Exception
@@ -136,6 +172,7 @@ public class Main {
 
         System.out.println("Macierz2:");
         printMatrix(random2);
+
 
 
     }
