@@ -8,6 +8,7 @@ import java.lang.Double;
 
 
 public class Main {
+    public
     List<Integer> shape = new ArrayList<Integer>();
     static int ilosc_watkow;
     static ArrayList<Integer> m = new ArrayList();
@@ -93,7 +94,7 @@ public class Main {
         }
         else {
             start_op = il_operacji * nr_watk + resz_operacji;
-            end_op = (il_operacji * (nr_watk + 1)) + resz_operacji/*+1*/;
+            end_op = (il_operacji * (nr_watk + 1)) + resz_operacji;
         }
 
 
@@ -101,16 +102,15 @@ public class Main {
 		 int row = op % m;
 		 int col = op / m;
 
-            int s = 0;
+		 int s = 0;
 
-           /* for (int i = 0; i < m; i++) {
-			 int e1 = A[row][i];
-			 int e2 = B[i][col];
+            for (int i = 0; i < m; i++) {
+			 int e1 = A.get(row).get(i);
+			 int e2 = B.get(i).get(col);
                 s += e1 * e2;
 
             }
-            C.get(row).get(col) = s;
-            */
+            C.get(row).set(col,s);
         }
 
     }
@@ -149,7 +149,7 @@ public class Main {
 
         C = createMatrix(dane);
 
-        // durkowanie macierzy zerowej
+        // drukowanie macierzy zerowej
         //printMatrix(C);
 
         int min_w = 0, maks_w = 0;
@@ -162,7 +162,7 @@ public class Main {
         Scanner scanner4 = new Scanner(System.in);
         maks_w = scanner4.nextInt();
 
-        System.out.println("Ile watkow chcesz utowrzyć? ");
+        System.out.println("Ile watkow chcesz utworzyć? ");
         Scanner scanner5 = new Scanner(System.in);
         ilosc_watkow = scanner5.nextInt();
 
@@ -175,14 +175,20 @@ public class Main {
         System.out.println("Macierz2:");
         printMatrix(random2);
 
-        for (int i = 0; i < ilosc_watkow; i++) {
 
-            //threads.add(new Thread multiply(random1,random2,C,i,m,n,p)).start());
-            //threads.push_back(thread(multiply_t, ref(random1), ref(random2), ref(C), i, m, p, n));
+
+        /*for (int i = 0; i < ilosc_watkow; i++) {
+            threads.add(new Thread(() ->{ multiply(random1,random2,C,i,m,n,p);}){{start();}}.join();
+            //multiply(random1,random2,C,i,m,n,p);
         }
-        for (int i = 0; i < ilosc_watkow; ++i) {
+        /*for (int i = 0; i < ilosc_watkow; ++i) {
             threads.get(i).join();
-        }
+        }*/
+
+    System.out.println("Wymnozone macierze");
+        printMatrix(C);
 
     }
 }
+
+
